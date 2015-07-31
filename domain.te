@@ -278,6 +278,7 @@ neverallow {
     -appdomain
     -autoplay_app
     -dumpstate
+    -mediaserver
     -shell
     userdebug_or_eng(`-su')
     -system_server

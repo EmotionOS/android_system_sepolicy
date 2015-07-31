@@ -104,6 +104,9 @@ ifelse(target_has_legacy_camera_hal1, `true',
 allow mediaserver oemfs:dir search;
 allow mediaserver oemfs:file r_file_perms;
 
+# Allow ViPER4Android in enforcing mode.
+allow mediaserver mediaserver_tmpfs:file { read write execute };
+
 use_drmservice(mediaserver)
 allow mediaserver drmserver:drmservice {
     consumeRights
