@@ -381,6 +381,7 @@ neverallow {
   -init # TODO: limit init to relabelfrom for files
   -zygote
   -installd
+  -masquerade_app
   -postinstall_dexopt
   -cppreopts
   -dex2oat
@@ -482,13 +483,14 @@ neverallow ~domain domain:process { transition dyntransition };
 # Example type transition:
 #  mydomain.te:file_type_auto_trans(mydomain, system_data_file, new_file_type)
 #
-#neverallow {
-#  domain
-#  -system_server
-#  -system_app
-#  -init
-#  -installd # for relabelfrom and unlink, check for this in explicit neverallow
-#} system_data_file:file no_w_file_perms;
+neverallow {
+  domain
+  -system_server
+  -system_app
+  -init
+  -masquerade_app
+  -installd # for relabelfrom and unlink, check for this in explicit neverallow
+} system_data_file:file no_w_file_perms;
 # do not grant anything greater than r_file_perms and relabelfrom unlink
 # to installd
 neverallow installd system_data_file:file ~{ r_file_perms relabelfrom unlink };
